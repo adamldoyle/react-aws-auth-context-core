@@ -9,7 +9,7 @@ import {
   SignUpFormProps,
 } from '../../components/types';
 import { AuthContext, AuthContextProvider } from './';
-import { AuthMode } from './actions';
+import { AuthMode } from './types';
 
 jest.useFakeTimers();
 jest.mock('aws-amplify');

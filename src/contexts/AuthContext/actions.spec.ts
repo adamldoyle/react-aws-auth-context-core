@@ -1,4 +1,5 @@
 import * as actions from './actions';
+import { AuthMode } from './types';
 
 describe('AuthContext actions', () => {
   describe('actions', () => {
@@ -13,10 +14,10 @@ describe('AuthContext actions', () => {
     });
 
     it('contains switchMode action', () => {
-      const result = actions.actions.switchMode(actions.AuthMode.FORGOT_PASSWORD, 'testEmail@gmail.com');
+      const result = actions.actions.switchMode(AuthMode.FORGOT_PASSWORD, 'testEmail@gmail.com');
       expect(result.type).toEqual('SWITCH_MODE');
       expect(result.payload).toEqual({
-        authMode: actions.AuthMode.FORGOT_PASSWORD,
+        authMode: AuthMode.FORGOT_PASSWORD,
         email: 'testEmail@gmail.com',
       });
     });
@@ -40,14 +41,14 @@ describe('AuthContext actions', () => {
       } as any;
       const result = actions.reducer(
         {
-          authMode: actions.AuthMode.SIGN_UP,
+          authMode: AuthMode.SIGN_UP,
           email: 'testEmail@gmail.com',
           session: null,
         },
         actions.actions.updateSession(newSession),
       );
       expect(result).toEqual({
-        authMode: actions.AuthMode.SIGN_UP,
+        authMode: AuthMode.SIGN_UP,
         email: 'testEmail@gmail.com',
         session: newSession,
         profile: {
@@ -74,14 +75,14 @@ describe('AuthContext actions', () => {
       } as any;
       const result = actions.reducer(
         {
-          authMode: actions.AuthMode.SIGN_UP,
+          authMode: AuthMode.SIGN_UP,
           email: 'testEmail@gmail.com',
           session: null,
         },
         actions.actions.updateSession(newSession),
       );
       expect(result).toEqual({
-        authMode: actions.AuthMode.SIGN_UP,
+        authMode: AuthMode.SIGN_UP,
         email: 'testEmail@gmail.com',
         session: newSession,
         profile: {
@@ -109,7 +110,7 @@ describe('AuthContext actions', () => {
         }),
       } as any;
       const currentState = {
-        authMode: actions.AuthMode.SIGN_UP,
+        authMode: AuthMode.SIGN_UP,
         email: 'testEmail@gmail.com',
         session: {
           getIdToken: () =>
@@ -129,14 +130,14 @@ describe('AuthContext actions', () => {
     it('switches mode in state on SWITCH_MODE', () => {
       const result = actions.reducer(
         {
-          authMode: actions.AuthMode.SIGN_UP,
+          authMode: AuthMode.SIGN_UP,
           email: 'testEmail@gmail.com',
           session: { oldSession: true } as any,
         },
-        actions.actions.switchMode(actions.AuthMode.SIGN_IN),
+        actions.actions.switchMode(AuthMode.SIGN_IN),
       );
       expect(result).toEqual({
-        authMode: actions.AuthMode.SIGN_IN,
+        authMode: AuthMode.SIGN_IN,
         email: 'testEmail@gmail.com',
         session: { oldSession: true },
       });
@@ -145,14 +146,14 @@ describe('AuthContext actions', () => {
     it('supports including email with SWITCH_MODE', () => {
       const result = actions.reducer(
         {
-          authMode: actions.AuthMode.SIGN_UP,
+          authMode: AuthMode.SIGN_UP,
           email: 'testEmail@gmail.com',
           session: { oldSession: true } as any,
         },
-        actions.actions.switchMode(actions.AuthMode.SIGN_IN, 'newEmail@gmail.com'),
+        actions.actions.switchMode(AuthMode.SIGN_IN, 'newEmail@gmail.com'),
       );
       expect(result).toEqual({
-        authMode: actions.AuthMode.SIGN_IN,
+        authMode: AuthMode.SIGN_IN,
         email: 'newEmail@gmail.com',
         session: { oldSession: true },
       });
@@ -161,14 +162,14 @@ describe('AuthContext actions', () => {
     it('returns previous state on other action', () => {
       const result = actions.reducer(
         {
-          authMode: actions.AuthMode.SIGN_UP,
+          authMode: AuthMode.SIGN_UP,
           email: 'testEmail@gmail.com',
           session: { oldSession: true } as any,
         },
         { type: 'SOMETHING_ELSE', payload: {} } as any,
       );
       expect(result).toEqual({
-        authMode: actions.AuthMode.SIGN_UP,
+        authMode: AuthMode.SIGN_UP,
         email: 'testEmail@gmail.com',
         session: { oldSession: true },
       });

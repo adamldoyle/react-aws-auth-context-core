@@ -14,8 +14,8 @@ import {
   SignUpFormProps,
   SignUpValues,
 } from '../../components/types';
-import { AuthMode, reducer as authReducer, actions as authActions } from './actions';
-import { IAuthContext } from './types';
+import { reducer as authReducer, actions as authActions } from './actions';
+import { IAuthContext, AuthMode } from './types';
 
 export const AuthContext = React.createContext<IAuthContext>(undefined);
 

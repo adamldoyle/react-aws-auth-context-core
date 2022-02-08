@@ -9,7 +9,13 @@ React context for managing authentication flow with AWS. Provides core functiona
 3. Requires Cognito to be configured with:
    - email as username
    - given_name, family_name, and allow_marketing attributes (none marked as required)
-4. Wrap portion of app that requires authentication in `<AuthContextProvider>` (normal usage would be to wrap entire app near the top-level) and provide components for UI (other libraries may provide an equivalent `AuthContextProvider` with the components already wired in)
+4. Wrap portion of app that requires authentication in `<AuthContextProvider>` (normal usage would be to wrap entire app near the top-level) and provide components for UI (other libraries may provide an equivalent `<AuthContextProvider>` with the components already wired in)
+
+## Component providers
+
+The following libraries provide `<AuthContextProvider>` as well as components for the entire workflow.
+
+- [@adamldoyle/react-aws-auth-context-mui-formik](https://github.com/adamldoyle/react-aws-auth-context-mui-formik)
 
 ## Examples
 

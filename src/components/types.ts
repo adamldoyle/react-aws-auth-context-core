@@ -1,4 +1,4 @@
-import * as authActions from '../contexts/AuthContext/actions';
+import { AuthMode } from '../contexts/AuthContext/types';
 
 export type SignInValues = {
   email: string;
@@ -6,7 +6,7 @@ export type SignInValues = {
 };
 
 export type SwitchModeCallback = {
-  (authMode: authActions.AuthMode, email?: string): void;
+  (authMode: AuthMode, email?: string): void;
 };
 
 export type SignInFormProps = {
